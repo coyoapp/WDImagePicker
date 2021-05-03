@@ -13,12 +13,8 @@
 		764FD58E1B8F01C100BE5F46 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 764FD58D1B8F01C100BE5F46 /* Images.xcassets */; };
 		764FD5911B8F01C100BE5F46 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 764FD58F1B8F01C100BE5F46 /* LaunchScreen.xib */; };
 		764FD59D1B8F01C100BE5F46 /* WDImagePickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764FD59C1B8F01C100BE5F46 /* WDImagePickerTests.swift */; };
-		764FD5A81B8F027900BE5F46 /* WDImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764FD5A71B8F027900BE5F46 /* WDImagePicker.swift */; };
-		764FD5AA1B8F033A00BE5F46 /* WDImageCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764FD5A91B8F033A00BE5F46 /* WDImageCropViewController.swift */; };
-		764FD5AC1B8F03B400BE5F46 /* WDImageCropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764FD5AB1B8F03B400BE5F46 /* WDImageCropView.swift */; };
-		764FD5AE1B8F03EC00BE5F46 /* WDImageCropOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764FD5AD1B8F03EC00BE5F46 /* WDImageCropOverlayView.swift */; };
-		764FD5B01B8F03FA00BE5F46 /* WDCropBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764FD5AF1B8F03FA00BE5F46 /* WDCropBorderView.swift */; };
-		764FD5B21B8F040A00BE5F46 /* WDResizableCropOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764FD5B11B8F040A00BE5F46 /* WDResizableCropOverlayView.swift */; };
+		94A7D2493D5CE15730EC24AA /* Pods_WDImagePickerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2357BF7E17EE204F77E5462 /* Pods_WDImagePickerTests.framework */; };
+		ED2C967DA6E10D767693DC2F /* Pods_WDImagePicker_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80C9BBAE5C2CF6F386476160 /* Pods_WDImagePicker_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,7 +28,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		764FD5811B8F01C100BE5F46 /* WDImagePicker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WDImagePicker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0723487F1E4D43984376659F /* Pods-WDImagePickerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WDImagePickerTests.debug.xcconfig"; path = "Target Support Files/Pods-WDImagePickerTests/Pods-WDImagePickerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		078ECC744A5D53F650A57EBE /* Pods-WDImagePickerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WDImagePickerTests.release.xcconfig"; path = "Target Support Files/Pods-WDImagePickerTests/Pods-WDImagePickerTests.release.xcconfig"; sourceTree = "<group>"; };
+		2DFE8AC8F78DFF865F69FB04 /* Pods-WDImagePicker_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WDImagePicker_Example.debug.xcconfig"; path = "Target Support Files/Pods-WDImagePicker_Example/Pods-WDImagePicker_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		764FD5811B8F01C100BE5F46 /* WDImagePicker_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WDImagePicker_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		764FD5851B8F01C100BE5F46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		764FD5861B8F01C100BE5F46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		764FD5881B8F01C100BE5F46 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -40,14 +39,13 @@
 		764FD58D1B8F01C100BE5F46 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		764FD5901B8F01C100BE5F46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		764FD5961B8F01C100BE5F46 /* WDImagePickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WDImagePickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		764FD59B1B8F01C100BE5F46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		764FD59B1B8F01C100BE5F46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Example for WDImagePicker/Info.plist"; sourceTree = "<group>"; };
 		764FD59C1B8F01C100BE5F46 /* WDImagePickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WDImagePickerTests.swift; sourceTree = "<group>"; };
-		764FD5A71B8F027900BE5F46 /* WDImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WDImagePicker.swift; sourceTree = "<group>"; };
-		764FD5A91B8F033A00BE5F46 /* WDImageCropViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WDImageCropViewController.swift; sourceTree = "<group>"; };
-		764FD5AB1B8F03B400BE5F46 /* WDImageCropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WDImageCropView.swift; sourceTree = "<group>"; };
-		764FD5AD1B8F03EC00BE5F46 /* WDImageCropOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WDImageCropOverlayView.swift; sourceTree = "<group>"; };
-		764FD5AF1B8F03FA00BE5F46 /* WDCropBorderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WDCropBorderView.swift; sourceTree = "<group>"; };
-		764FD5B11B8F040A00BE5F46 /* WDResizableCropOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WDResizableCropOverlayView.swift; sourceTree = "<group>"; };
+		80C9BBAE5C2CF6F386476160 /* Pods_WDImagePicker_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WDImagePicker_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F4AB16EB091EB5CF6154A84 /* Pods-WDImagePicker_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WDImagePicker_Example.release.xcconfig"; path = "Target Support Files/Pods-WDImagePicker_Example/Pods-WDImagePicker_Example.release.xcconfig"; sourceTree = "<group>"; };
+		A4353CC9F75B0EF2CB7C5265 /* Pods-WDImagePicker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WDImagePicker.debug.xcconfig"; path = "Target Support Files/Pods-WDImagePicker/Pods-WDImagePicker.debug.xcconfig"; sourceTree = "<group>"; };
+		D2357BF7E17EE204F77E5462 /* Pods_WDImagePickerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WDImagePickerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3524FC9E6729A7E179D9F3F /* Pods-WDImagePicker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WDImagePicker.release.xcconfig"; path = "Target Support Files/Pods-WDImagePicker/Pods-WDImagePicker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED2C967DA6E10D767693DC2F /* Pods_WDImagePicker_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,25 +61,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94A7D2493D5CE15730EC24AA /* Pods_WDImagePickerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6DE07D564AE81F56375615BE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D2357BF7E17EE204F77E5462 /* Pods_WDImagePickerTests.framework */,
+				80C9BBAE5C2CF6F386476160 /* Pods_WDImagePicker_Example.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		764FD5781B8F01C100BE5F46 = {
 			isa = PBXGroup;
 			children = (
 				764FD5831B8F01C100BE5F46 /* WDImagePicker */,
 				764FD5991B8F01C100BE5F46 /* WDImagePickerTests */,
 				764FD5821B8F01C100BE5F46 /* Products */,
+				FAB50707C11745D881164393 /* Pods */,
+				6DE07D564AE81F56375615BE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		764FD5821B8F01C100BE5F46 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				764FD5811B8F01C100BE5F46 /* WDImagePicker.app */,
+				764FD5811B8F01C100BE5F46 /* WDImagePicker_Example.app */,
 				764FD5961B8F01C100BE5F46 /* WDImagePickerTests.xctest */,
 			);
 			name = Products;
@@ -89,7 +100,6 @@
 		764FD5831B8F01C100BE5F46 /* WDImagePicker */ = {
 			isa = PBXGroup;
 			children = (
-				764FD5A61B8F024F00BE5F46 /* Classes */,
 				764FD5861B8F01C100BE5F46 /* AppDelegate.swift */,
 				764FD5881B8F01C100BE5F46 /* ViewController.swift */,
 				764FD58A1B8F01C100BE5F46 /* Main.storyboard */,
@@ -114,7 +124,8 @@
 				764FD59C1B8F01C100BE5F46 /* WDImagePickerTests.swift */,
 				764FD59A1B8F01C100BE5F46 /* Supporting Files */,
 			);
-			path = WDImagePickerTests;
+			name = WDImagePickerTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		764FD59A1B8F01C100BE5F46 /* Supporting Files */ = {
@@ -125,43 +136,46 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		764FD5A61B8F024F00BE5F46 /* Classes */ = {
+		FAB50707C11745D881164393 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				764FD5A71B8F027900BE5F46 /* WDImagePicker.swift */,
-				764FD5A91B8F033A00BE5F46 /* WDImageCropViewController.swift */,
-				764FD5AB1B8F03B400BE5F46 /* WDImageCropView.swift */,
-				764FD5AD1B8F03EC00BE5F46 /* WDImageCropOverlayView.swift */,
-				764FD5AF1B8F03FA00BE5F46 /* WDCropBorderView.swift */,
-				764FD5B11B8F040A00BE5F46 /* WDResizableCropOverlayView.swift */,
+				A4353CC9F75B0EF2CB7C5265 /* Pods-WDImagePicker.debug.xcconfig */,
+				F3524FC9E6729A7E179D9F3F /* Pods-WDImagePicker.release.xcconfig */,
+				0723487F1E4D43984376659F /* Pods-WDImagePickerTests.debug.xcconfig */,
+				078ECC744A5D53F650A57EBE /* Pods-WDImagePickerTests.release.xcconfig */,
+				2DFE8AC8F78DFF865F69FB04 /* Pods-WDImagePicker_Example.debug.xcconfig */,
+				8F4AB16EB091EB5CF6154A84 /* Pods-WDImagePicker_Example.release.xcconfig */,
 			);
-			path = Classes;
-			sourceTree = SOURCE_ROOT;
+			path = Pods;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		764FD5801B8F01C100BE5F46 /* WDImagePicker */ = {
+		764FD5801B8F01C100BE5F46 /* WDImagePicker_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 764FD5A01B8F01C100BE5F46 /* Build configuration list for PBXNativeTarget "WDImagePicker" */;
+			buildConfigurationList = 764FD5A01B8F01C100BE5F46 /* Build configuration list for PBXNativeTarget "WDImagePicker_Example" */;
 			buildPhases = (
+				92216613361EC25872B49D8B /* [CP] Check Pods Manifest.lock */,
 				764FD57D1B8F01C100BE5F46 /* Sources */,
 				764FD57E1B8F01C100BE5F46 /* Frameworks */,
 				764FD57F1B8F01C100BE5F46 /* Resources */,
+				4EC7D45F26400D9B00154B77 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = WDImagePicker;
+			name = WDImagePicker_Example;
 			productName = WDImagePicker;
-			productReference = 764FD5811B8F01C100BE5F46 /* WDImagePicker.app */;
+			productReference = 764FD5811B8F01C100BE5F46 /* WDImagePicker_Example.app */;
 			productType = "com.apple.product-type.application";
 		};
 		764FD5951B8F01C100BE5F46 /* WDImagePickerTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 764FD5A31B8F01C100BE5F46 /* Build configuration list for PBXNativeTarget "WDImagePickerTests" */;
 			buildPhases = (
+				E0688DDBFFE16804DC7DC205 /* [CP] Check Pods Manifest.lock */,
 				764FD5921B8F01C100BE5F46 /* Sources */,
 				764FD5931B8F01C100BE5F46 /* Frameworks */,
 				764FD5941B8F01C100BE5F46 /* Resources */,
@@ -212,7 +226,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				764FD5801B8F01C100BE5F46 /* WDImagePicker */,
+				764FD5801B8F01C100BE5F46 /* WDImagePicker_Example */,
 				764FD5951B8F01C100BE5F46 /* WDImagePickerTests */,
 			);
 		};
@@ -238,6 +252,70 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4EC7D45F26400D9B00154B77 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WDImagePicker_Example/Pods-WDImagePicker_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/WDImagePicker/WDImagePicker.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WDImagePicker.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WDImagePicker_Example/Pods-WDImagePicker_Example-frameworks.sh\"\n";
+		};
+		92216613361EC25872B49D8B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WDImagePicker_Example-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E0688DDBFFE16804DC7DC205 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WDImagePickerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		764FD57D1B8F01C100BE5F46 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -245,12 +323,6 @@
 			files = (
 				764FD5891B8F01C100BE5F46 /* ViewController.swift in Sources */,
 				764FD5871B8F01C100BE5F46 /* AppDelegate.swift in Sources */,
-				764FD5B21B8F040A00BE5F46 /* WDResizableCropOverlayView.swift in Sources */,
-				764FD5B01B8F03FA00BE5F46 /* WDCropBorderView.swift in Sources */,
-				764FD5AC1B8F03B400BE5F46 /* WDImageCropView.swift in Sources */,
-				764FD5A81B8F027900BE5F46 /* WDImagePicker.swift in Sources */,
-				764FD5AE1B8F03EC00BE5F46 /* WDImageCropOverlayView.swift in Sources */,
-				764FD5AA1B8F033A00BE5F46 /* WDImageCropViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,7 +339,7 @@
 /* Begin PBXTargetDependency section */
 		764FD5981B8F01C100BE5F46 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 764FD5801B8F01C100BE5F46 /* WDImagePicker */;
+			target = 764FD5801B8F01C100BE5F46 /* WDImagePicker_Example */;
 			targetProxy = 764FD5971B8F01C100BE5F46 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -401,6 +473,7 @@
 		};
 		764FD5A11B8F01C100BE5F46 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2DFE8AC8F78DFF865F69FB04 /* Pods-WDImagePicker_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7T89TCK24T;
@@ -415,6 +488,7 @@
 		};
 		764FD5A21B8F01C100BE5F46 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8F4AB16EB091EB5CF6154A84 /* Pods-WDImagePicker_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 7T89TCK24T;
@@ -429,6 +503,7 @@
 		};
 		764FD5A41B8F01C100BE5F46 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0723487F1E4D43984376659F /* Pods-WDImagePickerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = "";
@@ -448,6 +523,7 @@
 		};
 		764FD5A51B8F01C100BE5F46 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 078ECC744A5D53F650A57EBE /* Pods-WDImagePickerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = "";
@@ -473,7 +549,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		764FD5A01B8F01C100BE5F46 /* Build configuration list for PBXNativeTarget "WDImagePicker" */ = {
+		764FD5A01B8F01C100BE5F46 /* Build configuration list for PBXNativeTarget "WDImagePicker_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				764FD5A11B8F01C100BE5F46 /* Debug */,

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WDImagePicker
 
 class ViewController: UIViewController, WDImagePickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 

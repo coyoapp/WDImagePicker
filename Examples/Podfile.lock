@@ -1,0 +1,16 @@
+PODS:
+  - WDImagePicker (0.2.3)
+
+DEPENDENCIES:
+  - WDImagePicker (from `../`)
+
+EXTERNAL SOURCES:
+  WDImagePicker:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  WDImagePicker: be1a41d4d458b6d567dec9b6e58bfb5c3cc53551
+
+PODFILE CHECKSUM: 1dfbc6bf6c3eb04b449a12d40fcaad7f2385ae8f
+
+COCOAPODS: 1.10.1

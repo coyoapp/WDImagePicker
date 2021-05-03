@@ -1,0 +1,22 @@
+{
+  "name": "WDImagePicker",
+  "version": "0.2.3",
+  "summary": "Image picker with custom crop rect for iOS written in Swift (Ported over from GKImagePicker)",
+  "description": "With WDImagePicker and just 4 lines of code, you can set your custom crop area for UIImagePickerController. If you don't set it, it uses the same crop area as the default UIImagePickerController.",
+  "homepage": "https://github.com/mayur43s/WDImagePicker",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Mayur Shrivas": "idevmayur@gmail.com"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source": {
+    "git": "https://github.com/mayur43s/WDImagePicker.git",
+    "tag": "0.2.3"
+  },
+  "source_files": "Sources/**/*.swift"
+}

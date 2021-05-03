@@ -9,5 +9,5 @@ Pod::Spec.new do |s|
   s.platform = :ios
   s.ios.deployment_target = '10.0'
   s.source = { :git => 'https://github.com/mayur43s/WDImagePicker.git', :tag => '0.2.3' }
-  s.source_files = "Classes/*.swift"
+  s.source_files = "Sources/**/*.swift"
 end

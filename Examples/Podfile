@@ -1,0 +1,10 @@
+use_frameworks!
+
+target 'WDImagePicker_Example' do
+  pod 'WDImagePicker', :path => '../'
+
+  target 'WDImagePickerTests' do
+    inherit! :search_paths
+  end
+
+end

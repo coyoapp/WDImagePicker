@@ -26,9 +26,9 @@ class ViewController: UIViewController, WDImagePickerDelegate, UIImagePickerCont
         self.customCropButton = UIButton()
         self.customCropButton.frame = UIDevice.current.userInterfaceIdiom == .pad ?
             CGRect(x: 20, y: 20, width: 220, height: 44) :
-            CGRect(x: 20, y: self.customCropButton.frame.maxY + 20 , width: self.view.bounds.width - 40, height: 44)
+            CGRect(x: 20, y: self.customCropButton.frame.maxY + 60 , width: self.view.bounds.width - 40, height: 44)
         self.customCropButton.setTitleColor(self.view.tintColor, for: UIControl.State())
-        self.customCropButton.setTitle("Custom Crop", for:UIControl.State())
+        self.customCropButton.setTitle("6:1 Crop", for:UIControl.State())
         self.customCropButton.addTarget(self, action: #selector(ViewController.showPicker(_:)), for: .touchUpInside)
         self.view.addSubview(self.customCropButton)
 
@@ -40,7 +40,7 @@ class ViewController: UIViewController, WDImagePickerDelegate, UIImagePickerCont
 
         self.resizableButton = UIButton()
         self.resizableButton.setTitleColor(self.view.tintColor, for:UIControl.State())
-        self.resizableButton.setTitle("Resizable Custom Crop", for: UIControl.State())
+        self.resizableButton.setTitle("Rectangle crop", for: UIControl.State())
         self.resizableButton.addTarget(self, action: #selector(ViewController.showResizablePicker(_:)), for: .touchUpInside)
         self.view.addSubview(self.resizableButton)
 
@@ -68,15 +68,11 @@ class ViewController: UIViewController, WDImagePickerDelegate, UIImagePickerCont
 
     @objc func showPicker(_ button: UIButton) {
         self.imagePicker = WDImagePicker()
-        self.imagePicker.cropSize = CGSize(width: 280, height: 280)
+        self.imagePicker.cropSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.width/6)//CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width / 6)
         self.imagePicker.delegate = self
+        self.imagePicker.parentViewController = self
+        self.present(self.imagePicker.imagePickerController, animated: true, completion: nil)
 
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            self.popoverController = UIPopoverController(contentViewController: self.imagePicker.imagePickerController)
-            self.popoverController.present(from: button.frame, in: self.view, permittedArrowDirections: .any, animated: true)
-        } else {
-            self.present(self.imagePicker.imagePickerController, animated: true, completion: nil)
-        }
     }
 
     @objc func showNormalPicker(_ button: UIButton) {
@@ -84,27 +80,15 @@ class ViewController: UIViewController, WDImagePickerDelegate, UIImagePickerCont
         self.imagePickerController.sourceType = .photoLibrary
         self.imagePickerController.delegate = self
         self.imagePickerController.allowsEditing = true
-
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            self.popoverController = UIPopoverController(contentViewController: self.imagePickerController)
-            self.popoverController.present(from: button.frame, in: self.view, permittedArrowDirections: .any, animated: true)
-        } else {
-            self.present(self.imagePickerController, animated: true, completion: nil)
-        }
+        self.present(self.imagePickerController, animated: true, completion: nil)
     }
 
     @objc func showResizablePicker(_ button: UIButton) {
         self.imagePicker = WDImagePicker()
-        self.imagePicker.cropSize = CGSize(width: 280, height: 280)
+        self.imagePicker.cropSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
         self.imagePicker.delegate = self
-        self.imagePicker.resizableCropArea = true
-
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            self.popoverController = UIPopoverController(contentViewController: self.imagePicker.imagePickerController)
-            self.popoverController.present(from: button.frame, in: self.view, permittedArrowDirections: .any, animated: true)
-        } else {
-            self.present(self.imagePicker.imagePickerController, animated: true, completion: nil)
-        }
+        self.imagePicker.resizableCropArea = false
+        self.present(self.imagePicker.imagePickerController, animated: true, completion: nil)
     }
 
     func imagePicker(_ imagePicker: WDImagePicker, pickedImage: UIImage) {
@@ -113,21 +97,12 @@ class ViewController: UIViewController, WDImagePickerDelegate, UIImagePickerCont
     }
 
     func hideImagePicker() {
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            self.popoverController.dismiss(animated: true)
-        } else {
-            self.imagePicker.imagePickerController.dismiss(animated: true, completion: nil)
-        }
+        self.imagePicker.imagePickerController.dismiss(animated: true, completion: nil)
     }
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [AnyHashable: Any]!) {
         self.imageView.image = image
-
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            self.popoverController.dismiss(animated: true)
-        } else {
-            picker.dismiss(animated: true, completion: nil)
-        }
+        picker.dismiss(animated: true, completion: nil)
     }
 }
 

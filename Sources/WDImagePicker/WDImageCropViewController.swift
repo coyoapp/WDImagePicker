@@ -18,29 +18,32 @@ internal class WDImageCropViewController: UIViewController {
     var delegate: WDImageCropControllerDelegate?
     var cropSize: CGSize!
     var resizableCropArea = false
+    var ipadTitle: String?
 
-    fileprivate var croppedImage: UIImage!
+    var cancelButtonTitle: String?
 
-    fileprivate var imageCropView: WDImageCropView!
-    fileprivate var toolbar: UIToolbar!
-    fileprivate var useButton: UIButton!
-    fileprivate var cancelButton: UIButton!
+    /// For iphone
+    var chooseButtonTitle: String?
+
+    /// For ipad
+    var useButtonTitle: String?
+
+    private var croppedImage: UIImage!
+    private var imageCropView: WDImageCropView!
+    private var toolbar: UIToolbar!
+    private var useButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.automaticallyAdjustsScrollViewInsets = false
-
-        self.title = "Choose Photo"
-
-        self.setupNavigationBar()
+        self.title = self.ipadTitle ?? "Choose Photo"
         self.setupCropView()
-        self.setupToolbar()
 
         if UIDevice.current.userInterfaceIdiom == .phone {
             self.navigationController?.isNavigationBarHidden = true
+            self.setupToolbar()
         } else {
             self.navigationController?.isNavigationBarHidden = false
+            self.setupNavigationBar()
         }
     }
 
@@ -48,8 +51,11 @@ internal class WDImageCropViewController: UIViewController {
         super.viewWillLayoutSubviews()
 
         self.imageCropView.frame = self.view.bounds
-        self.toolbar?.frame = CGRect(x: 0, y: self.view.frame.height - 54,
-            width: self.view.frame.size.width, height: 54)
+
+        let safeFrame = self.view.safeAreaLayoutGuide.layoutFrame
+        let bottomSafeAreaHeight = self.view.frame.maxY - safeFrame.maxY
+        self.toolbar?.frame = CGRect(x: 0, y: self.view.bounds.height - bottomSafeAreaHeight  - 54,
+                                    width: self.view.frame.size.width, height: 54)
     }
 
     @objc func actionCancel(_ sender: AnyObject) {
@@ -61,14 +67,19 @@ internal class WDImageCropViewController: UIViewController {
         self.delegate?.imageCropController(self, didFinishWithCroppedImage: croppedImage)
     }
 
-    fileprivate func setupNavigationBar() {
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel,
-                                                                target: self, action: #selector(actionCancel))
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Use", style: .plain,
-            target: self, action: #selector(actionUse))
+    private func setupNavigationBar() {
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: self.cancelButtonTitle ?? "Cancel",
+                                                                style: .plain,
+                                                                target: self,
+                                                                action:  #selector(self.actionCancel))
+
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: self.useButtonTitle ?? "Use",
+                                                                 style: .plain,
+                                                                 target: self,
+                                                                 action: #selector(self.actionUse))
     }
 
-    fileprivate func setupCropView() {
+    private func setupCropView() {
         self.imageCropView = WDImageCropView(frame: self.view.bounds)
         self.imageCropView.imageToCrop = sourceImage
         self.imageCropView.resizableCropArea = self.resizableCropArea
@@ -76,29 +87,7 @@ internal class WDImageCropViewController: UIViewController {
         self.view.addSubview(self.imageCropView)
     }
 
-    fileprivate func setupCancelButton() {
-        self.cancelButton = UIButton()
-        self.cancelButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        self.cancelButton.titleLabel?.shadowOffset = CGSize(width: 0, height: -1)
-        self.cancelButton.frame = CGRect(x: 0, y: 0, width: 58, height: 30)
-        self.cancelButton.setTitle("Cancel", for: UIControl.State())
-        self.cancelButton.setTitleShadowColor(
-            UIColor(red: 0.118, green: 0.247, blue: 0.455, alpha: 1), for: UIControl.State())
-        self.cancelButton.addTarget(self, action: #selector(actionCancel), for: .touchUpInside)
-    }
-
-    fileprivate func setupUseButton() {
-        self.useButton = UIButton()
-        self.useButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        self.useButton.titleLabel?.shadowOffset = CGSize(width: 0, height: -1)
-        self.useButton.frame = CGRect(x: 0, y: 0, width: 58, height: 30)
-        self.useButton.setTitle("Use", for: UIControl.State())
-        self.useButton.setTitleShadowColor(
-            UIColor(red: 0.118, green: 0.247, blue: 0.455, alpha: 1), for: UIControl.State())
-        self.useButton.addTarget(self, action: #selector(actionUse), for: .touchUpInside)
-    }
-
-    fileprivate func toolbarBackgroundImage() -> UIImage {
+    private func toolbarBackgroundImage() -> UIImage {
         let components: [CGFloat] = [1, 1, 1, 1, 123.0 / 255.0, 125.0 / 255.0, 132.0 / 255.0, 1]
 
         UIGraphicsBeginImageContextWithOptions(CGSize(width: 320, height: 54), true, 0)
@@ -116,15 +105,12 @@ internal class WDImageCropViewController: UIViewController {
         return viewImage!
     }
 
-    fileprivate func setupToolbar() {
+    private func setupToolbar() {
         if UIDevice.current.userInterfaceIdiom == .phone {
-            self.toolbar = UIToolbar(frame: CGRect.zero)
+
+            self.toolbar = UIToolbar(frame: CGRect(x: 0, y: -54, width: self.view.frame.size.width, height: 54))
             self.toolbar.isTranslucent = true
             self.toolbar.barStyle = .black
-            self.view.addSubview(self.toolbar)
-
-            self.setupCancelButton()
-            self.setupUseButton()
 
             let info = UILabel(frame: CGRect.zero)
             info.text = ""
@@ -135,12 +121,20 @@ internal class WDImageCropViewController: UIViewController {
             info.font = UIFont.boldSystemFont(ofSize: 18)
             info.sizeToFit()
 
-            let cancel = UIBarButtonItem(customView: self.cancelButton)
             let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
             let label = UIBarButtonItem(customView: info)
-            let use = UIBarButtonItem(customView: self.useButton)
 
-            self.toolbar.setItems([cancel, flex, label, flex, use], animated: false)
+            let cancelButton = UIBarButtonItem(title: cancelButtonTitle ?? "Cancel", style: .plain, target: self, action:  #selector(actionCancel))
+            cancelButton.tintColor = .white
+
+            let chooseButton = UIBarButtonItem(title: chooseButtonTitle ?? "Choose", style: .plain, target: self, action:  #selector(actionUse))
+            chooseButton.tintColor = .white
+
+            self.toolbar.setItems([cancelButton, flex, label, flex, chooseButton], animated: false)
+            self.toolbar.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            self.toolbar.autoresizesSubviews = true
+            self.toolbar.sizeToFit()
+            self.view.addSubview(self.toolbar)
         }
     }
 }

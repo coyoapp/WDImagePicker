@@ -94,17 +94,21 @@ internal class WDImageCropView: UIView, UIScrollViewDelegate {
         self.scrollView.clipsToBounds = false
         self.scrollView.decelerationRate = UIScrollView.DecelerationRate.normal
         self.scrollView.backgroundColor = UIColor.clear
+        self.scrollView.alwaysBounceHorizontal = true
+        self.scrollView.alwaysBounceVertical = true
+        self.scrollView.contentInsetAdjustmentBehavior = .automatic
         self.addSubview(self.scrollView)
 
-        self.imageView = UIImageView(frame: self.scrollView.frame)
+        self.imageView = UIImageView(frame: .zero)
         self.imageView.contentMode = .scaleAspectFit
         self.imageView.backgroundColor = UIColor.black
+        self.imageView.isUserInteractionEnabled = true
         self.scrollView.addSubview(self.imageView)
 
-        self.scrollView.minimumZoomScale =
-            self.scrollView.frame.width / self.scrollView.frame.height
+        self.scrollView.minimumZoomScale = 1
         self.scrollView.maximumZoomScale = 20
-        self.scrollView.setZoomScale(1.0, animated: false)
+        self.scrollView.setZoomScale(1, animated: true)
+        self.scrollView.isScrollEnabled = true
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -144,10 +148,8 @@ internal class WDImageCropView: UIView, UIScrollViewDelegate {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        let size = self.cropSize;
+        let size = self.cropSize
         let toolbarSize = CGFloat(UIDevice.current.userInterfaceIdiom == .pad ? 0 : 54)
-        self.xOffset = floor((self.bounds.width - size.width) * 0.5)
-        self.yOffset = floor((self.bounds.height - toolbarSize - size.height) * 0.5)
 
         let height = self.imageToCrop!.size.height
         let width = self.imageToCrop!.size.width
@@ -156,21 +158,21 @@ internal class WDImageCropView: UIView, UIScrollViewDelegate {
         var factoredHeight: CGFloat = 0
         var factoredWidth: CGFloat = 0
 
-        if width > height {
-            factor = width / size.width
-            factoredWidth = size.width
-            factoredHeight =  height / factor
-        } else {
-            factor = height / size.height
-            factoredWidth = width / factor
-            factoredHeight = size.height
-        }
+        factor = width / size.width
+        factoredWidth = size.width
+        factoredHeight =  height / factor
 
         self.cropOverlayView.frame = self.bounds
-        self.scrollView.frame = CGRect(x: xOffset, y: yOffset, width: size.width, height: size.height)
-        self.scrollView.contentSize = CGSize(width: size.width, height: size.height)
         self.imageView.frame = CGRect(x: 0, y: floor((size.height - factoredHeight) * 0.5),
             width: factoredWidth, height: factoredHeight)
+        self.xOffset = floor((self.bounds.width - size.width) * 0.5)
+        self.yOffset = floor((self.bounds.height - toolbarSize - size.height) * 0.5)
+        self.scrollView.frame = CGRect(x: xOffset, y: yOffset, width: size.width, height: size.height)
+        self.scrollView.contentSize = self.imageView.frame.size
+
+        if size.height < factoredHeight {
+            self.scrollView.setContentOffset(CGPoint(x: 0, y: -floor((size.height - factoredHeight) * 0.5)), animated: false)
+        }
     }
 
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
@@ -217,17 +219,9 @@ internal class WDImageCropView: UIView, UIScrollViewDelegate {
         let scaleHeight = imageToCrop!.size.height / cropSize.height
         var scale: CGFloat = 0
 
-        if cropSize.width == cropSize.height {
-            scale = max(scaleWidth, scaleHeight)
-        } else if cropSize.width > cropSize.height {
-            scale = imageToCrop!.size.width < imageToCrop!.size.height ?
-                max(scaleWidth, scaleHeight) :
-                min(scaleWidth, scaleHeight)
-        } else {
-            scale = imageToCrop!.size.width < imageToCrop!.size.height ?
-                min(scaleWidth, scaleHeight) :
-                max(scaleWidth, scaleHeight)
-        }
+        scale = cropSize.width == cropSize.height
+            ? max(scaleWidth, scaleHeight)
+            : min(scaleWidth, scaleHeight)
 
         // extract visible rect from scrollview and scale it
         var visibleRect = scrollView.convert(scrollView.bounds, to:imageView)

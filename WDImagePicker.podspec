@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.license = { :type => "MIT", :file => "LICENSE" }
   s.author = { "Mayur Shrivas" => "idevmayur@gmail.com" }
   s.platform = :ios
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '11.0'
   s.source = { :git => 'https://github.com/mayur43s/WDImagePicker.git', :tag => '0.2.3' }
   s.source_files = "Sources/**/*.swift"
 end

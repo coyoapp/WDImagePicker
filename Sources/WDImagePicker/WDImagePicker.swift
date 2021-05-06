@@ -16,9 +16,12 @@ import UIKit
 @objc open class WDImagePicker: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate, WDImageCropControllerDelegate {
     open var delegate: WDImagePickerDelegate?
     open var cropSize: CGSize!
+    open var cancelButtonTitle: String?
+    open var chooseButtonTitle: String?
+    open var useButtonTitle: String?
     open var resizableCropArea = false
 
-    fileprivate var _imagePickerController: UIImagePickerController!
+    private var _imagePickerController: UIImagePickerController!
 
     open var imagePickerController: UIImagePickerController {
         return _imagePickerController
@@ -33,7 +36,7 @@ import UIKit
         _imagePickerController.sourceType = .photoLibrary
     }
 
-    fileprivate func hideController() {
+    private func hideController() {
         self._imagePickerController.dismiss(animated: true, completion: nil)
     }
 
@@ -50,6 +53,9 @@ import UIKit
         cropController.sourceImage = info[.originalImage] as? UIImage
         cropController.resizableCropArea = self.resizableCropArea
         cropController.cropSize = self.cropSize
+        cropController.cancelButtonTitle = self.cancelButtonTitle
+        cropController.chooseButtonTitle = self.chooseButtonTitle
+        cropController.useButtonTitle = self.useButtonTitle
         cropController.delegate = self
         picker.pushViewController(cropController, animated: true)
     }

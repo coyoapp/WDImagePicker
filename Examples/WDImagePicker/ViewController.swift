@@ -12,7 +12,6 @@ import WDImagePicker
 class ViewController: UIViewController, WDImagePickerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     fileprivate var imagePicker: WDImagePicker!
-    fileprivate var popoverController: UIPopoverController!
     fileprivate var imagePickerController: UIImagePickerController!
 
     fileprivate var customCropButton: UIButton!
@@ -70,7 +69,6 @@ class ViewController: UIViewController, WDImagePickerDelegate, UIImagePickerCont
         self.imagePicker = WDImagePicker()
         self.imagePicker.cropSize = CGSize(width: self.view.bounds.width, height: self.view.bounds.width/6)//CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width / 6)
         self.imagePicker.delegate = self
-        self.imagePicker.parentViewController = self
         self.present(self.imagePicker.imagePickerController, animated: true, completion: nil)
 
     }

@@ -16,7 +16,7 @@ internal protocol WDImageCropControllerDelegate {
 internal class WDImageCropViewController: UIViewController {
     var sourceImage: UIImage!
     var delegate: WDImageCropControllerDelegate?
-    var cropSize: CGSize!
+    var aspectRatioPreset: WDImagePickerAspectRatioPreset!
     var resizableCropArea = false
     var ipadTitle: String?
 
@@ -36,6 +36,10 @@ internal class WDImageCropViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = self.ipadTitle ?? "Choose Photo"
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         self.setupCropView()
 
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -59,7 +63,12 @@ internal class WDImageCropViewController: UIViewController {
     }
 
     @objc func actionCancel(_ sender: AnyObject) {
-        self.navigationController?.popViewController(animated: true)
+
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 
     @objc func actionUse(_ sender: AnyObject) {
@@ -83,8 +92,20 @@ internal class WDImageCropViewController: UIViewController {
         self.imageCropView = WDImageCropView(frame: self.view.bounds)
         self.imageCropView.imageToCrop = sourceImage
         self.imageCropView.resizableCropArea = self.resizableCropArea
-        self.imageCropView.cropSize = cropSize
+        self.imageCropView.cropSize = estimatedCropSize()
         self.view.addSubview(self.imageCropView)
+    }
+
+    private func estimatedCropSize() -> CGSize {
+
+        let viewWidth = self.view.bounds.width
+
+        switch self.aspectRatioPreset {
+        case .preset6x1:
+            return CGSize(width: viewWidth, height: viewWidth / 6)
+        default:
+            return CGSize(width: viewWidth, height: viewWidth)
+        }
     }
 
     private func toolbarBackgroundImage() -> UIImage {

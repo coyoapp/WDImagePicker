@@ -8,14 +8,22 @@
 
 import UIKit
 
+public enum WDImagePickerAspectRatioPreset {
+    case presetSquare
+    case preset6x1
+}
+
 @objc public protocol WDImagePickerDelegate {
     @objc optional func imagePicker(_ imagePicker: WDImagePicker, pickedImage: UIImage)
     @objc optional func imagePickerDidCancel(_ imagePicker: WDImagePicker)
 }
 
 @objc open class WDImagePicker: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate, WDImageCropControllerDelegate {
+
     open var delegate: WDImagePickerDelegate?
-    open var cropSize: CGSize!
+
+    ///A choice from one of the pre-defined aspect ratio presets
+    open var aspectRatioPreset: WDImagePickerAspectRatioPreset = .presetSquare
     open var cancelButtonTitle: String?
     open var chooseButtonTitle: String?
     open var useButtonTitle: String?
@@ -30,7 +38,6 @@ import UIKit
     override public init() {
         super.init()
 
-        self.cropSize = CGSize(width: 320, height: 320)
         _imagePickerController = UIImagePickerController()
         _imagePickerController.delegate = self
         _imagePickerController.sourceType = .photoLibrary
@@ -52,12 +59,19 @@ import UIKit
         let cropController = WDImageCropViewController()    
         cropController.sourceImage = info[.originalImage] as? UIImage
         cropController.resizableCropArea = self.resizableCropArea
-        cropController.cropSize = self.cropSize
+        cropController.aspectRatioPreset = self.aspectRatioPreset
         cropController.cancelButtonTitle = self.cancelButtonTitle
         cropController.chooseButtonTitle = self.chooseButtonTitle
         cropController.useButtonTitle = self.useButtonTitle
         cropController.delegate = self
-        picker.pushViewController(cropController, animated: true)
+
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            cropController.modalPresentationStyle = .pageSheet
+            cropController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+            picker.present(UINavigationController(rootViewController: cropController), animated: true, completion: nil)
+        } else {
+            picker.pushViewController(cropController, animated: true)
+        }
     }
 
     func imageCropController(_ imageCropController: WDImageCropViewController, didFinishWithCroppedImage croppedImage: UIImage) {

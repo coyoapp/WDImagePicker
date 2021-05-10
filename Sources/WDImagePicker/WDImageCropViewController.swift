@@ -19,25 +19,15 @@ internal class WDImageCropViewController: UIViewController {
     var delegate: WDImageCropControllerDelegate?
     var aspectRatioPreset: WDImagePickerAspectRatioPreset!
     var resizableCropArea = false
-    var ipadTitle: String?
 
     var cancelButtonTitle: String?
-
-    /// For iphone
     var chooseButtonTitle: String?
-
-    /// For ipad
     var useButtonTitle: String?
 
     private var croppedImage: UIImage!
     private var imageCropView: WDImageCropView!
     private var toolbar: UIToolbar!
     private var useButton: UIButton!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.title = self.ipadTitle ?? "Choose Photo"
-    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -73,12 +63,12 @@ internal class WDImageCropViewController: UIViewController {
     }
 
     private func setupNavigationBar() {
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: self.cancelButtonTitle ?? "Cancel",
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: self.cancelButtonTitle,
                                                                 style: .plain,
                                                                 target: self,
                                                                 action:  #selector(self.actionCancel))
 
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: self.useButtonTitle ?? "Use",
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: self.useButtonTitle,
                                                                  style: .plain,
                                                                  target: self,
                                                                  action: #selector(self.actionUse))
@@ -141,10 +131,10 @@ internal class WDImageCropViewController: UIViewController {
             let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
             let label = UIBarButtonItem(customView: info)
 
-            let cancelButton = UIBarButtonItem(title: cancelButtonTitle ?? "Cancel", style: .plain, target: self, action:  #selector(actionCancel))
+            let cancelButton = UIBarButtonItem(title: cancelButtonTitle, style: .plain, target: self, action:  #selector(actionCancel))
             cancelButton.tintColor = .white
 
-            let chooseButton = UIBarButtonItem(title: chooseButtonTitle ?? "Choose", style: .plain, target: self, action:  #selector(actionUse))
+            let chooseButton = UIBarButtonItem(title: chooseButtonTitle, style: .plain, target: self, action:  #selector(actionUse))
             chooseButton.tintColor = .white
 
             self.toolbar.setItems([cancelButton, flex, label, flex, chooseButton], animated: false)

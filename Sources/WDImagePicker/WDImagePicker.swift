@@ -24,9 +24,17 @@ public enum WDImagePickerAspectRatioPreset {
 
     ///A choice from one of the pre-defined aspect ratio presets
     open var aspectRatioPreset: WDImagePickerAspectRatioPreset = .presetSquare
-    open var cancelButtonTitle: String?
-    open var chooseButtonTitle: String?
-    open var useButtonTitle: String?
+
+    /// Title used in ipads only
+    open var title: String?
+
+    /// Button text used in iphones only
+    open var chooseButtonText: String?
+
+    /// Button text used in ipads only
+    open var useButtonText: String?
+
+    open var cancelButtonText: String?
     open var resizableCropArea = false
 
     private var _imagePickerController: UIImagePickerController!
@@ -60,9 +68,10 @@ public enum WDImagePickerAspectRatioPreset {
         cropController.sourceImage = info[.originalImage] as? UIImage
         cropController.resizableCropArea = self.resizableCropArea
         cropController.aspectRatioPreset = self.aspectRatioPreset
-        cropController.cancelButtonTitle = self.cancelButtonTitle
-        cropController.chooseButtonTitle = self.chooseButtonTitle
-        cropController.useButtonTitle = self.useButtonTitle
+        cropController.title = self.title ?? "Choose Photo"
+        cropController.cancelButtonTitle = self.cancelButtonText ?? "Cancel"
+        cropController.chooseButtonTitle = self.chooseButtonText ?? "Choose"
+        cropController.useButtonTitle = self.useButtonText ?? "Use"
         cropController.delegate = self
 
         if UIDevice.current.userInterfaceIdiom == .pad {

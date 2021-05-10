@@ -11,6 +11,7 @@ import CoreGraphics
 
 internal protocol WDImageCropControllerDelegate {
     func imageCropController(_ imageCropController: WDImageCropViewController, didFinishWithCroppedImage croppedImage: UIImage)
+    func imageCropControllerDidCancel(_ imageCropController: WDImageCropViewController)
 }
 
 internal class WDImageCropViewController: UIViewController {
@@ -63,12 +64,7 @@ internal class WDImageCropViewController: UIViewController {
     }
 
     @objc func actionCancel(_ sender: AnyObject) {
-
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            self.dismiss(animated: true, completion: nil)
-        } else {
-            self.navigationController?.popViewController(animated: true)
-        }
+        self.delegate?.imageCropControllerDidCancel(self)
     }
 
     @objc func actionUse(_ sender: AnyObject) {

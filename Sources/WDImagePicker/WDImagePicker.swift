@@ -77,4 +77,12 @@ public enum WDImagePickerAspectRatioPreset {
     func imageCropController(_ imageCropController: WDImageCropViewController, didFinishWithCroppedImage croppedImage: UIImage) {
         self.delegate?.imagePicker?(self, pickedImage: croppedImage)
     }
+
+    func imageCropControllerDidCancel(_ imageCropController: WDImageCropViewController) {
+        if _imagePickerController.sourceType == .photoLibrary && UIDevice.current.userInterfaceIdiom != .pad {
+            imageCropController.navigationController?.popViewController(animated: true)
+        } else {
+            imageCropController.dismiss(animated: true, completion: nil)
+        }
+    }
 }

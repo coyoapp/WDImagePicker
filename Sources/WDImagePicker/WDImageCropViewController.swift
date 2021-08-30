@@ -24,7 +24,7 @@ internal class WDImageCropViewController: UIViewController {
     var chooseButtonTitle: String?
     var useButtonTitle: String?
 
-    private var croppedImage: UIImage!
+    private var croppedImage: UIImage?
     private var imageCropView: WDImageCropView!
     private var toolbar: UIToolbar!
     private var useButton: UIButton!
@@ -58,7 +58,10 @@ internal class WDImageCropViewController: UIViewController {
     }
 
     @objc func actionUse(_ sender: AnyObject) {
-        croppedImage = self.imageCropView.croppedImage()
+        guard let croppedImage = self.imageCropView.croppedImage() else {
+            NSLog("Cropped Image not found.")
+            return
+        }
         self.delegate?.imageCropController(self, didFinishWithCroppedImage: croppedImage)
     }
 

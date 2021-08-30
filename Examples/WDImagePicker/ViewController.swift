@@ -28,7 +28,7 @@ class ViewController: UIViewController, WDImagePickerDelegate, UIImagePickerCont
             CGRect(x: 20, y: self.customCropButton.frame.maxY + 60 , width: self.view.bounds.width - 40, height: 44)
         self.customCropButton.setTitleColor(self.view.tintColor, for: UIControl.State())
         self.customCropButton.setTitle("6:1 Crop", for:UIControl.State())
-        self.customCropButton.addTarget(self, action: #selector(ViewController.showPicker(_:)), for: .touchUpInside)
+        self.customCropButton.addTarget(self, action: #selector(ViewController.show6x1Picker(_:)), for: .touchUpInside)
         self.view.addSubview(self.customCropButton)
 
         self.normalCropButton = UIButton()
@@ -39,8 +39,8 @@ class ViewController: UIViewController, WDImagePickerDelegate, UIImagePickerCont
 
         self.resizableButton = UIButton()
         self.resizableButton.setTitleColor(self.view.tintColor, for:UIControl.State())
-        self.resizableButton.setTitle("Rectangle crop", for: UIControl.State())
-        self.resizableButton.addTarget(self, action: #selector(ViewController.showResizablePicker(_:)), for: .touchUpInside)
+        self.resizableButton.setTitle("Square crop", for: UIControl.State())
+        self.resizableButton.addTarget(self, action: #selector(ViewController.showSquarePicker(_:)), for: .touchUpInside)
         self.view.addSubview(self.resizableButton)
 
         self.imageView = UIImageView(frame: CGRect.zero)
@@ -65,9 +65,10 @@ class ViewController: UIViewController, WDImagePickerDelegate, UIImagePickerCont
             CGRect(x: 20, y: self.resizableButton.frame.maxY + 20, width: self.view.bounds.width - 40, height: self.view.bounds.height - 20 - (self.resizableButton.frame.maxY + 20))
     }
 
-    @objc func showPicker(_ button: UIButton) {
+    @objc func show6x1Picker(_ button: UIButton) {
         self.imagePicker = WDImagePicker()
         self.imagePicker.delegate = self
+        self.imagePicker.imagePickerController.sourceType = .photoLibrary
         self.imagePicker.aspectRatioPreset = .preset6x1
         self.present(self.imagePicker.imagePickerController, animated: true, completion: nil)
     }
@@ -80,9 +81,10 @@ class ViewController: UIViewController, WDImagePickerDelegate, UIImagePickerCont
         self.present(self.imagePickerController, animated: true, completion: nil)
     }
 
-    @objc func showResizablePicker(_ button: UIButton) {
+    @objc func showSquarePicker(_ button: UIButton) {
         self.imagePicker = WDImagePicker()
         self.imagePicker.aspectRatioPreset = .presetSquare
+        self.imagePicker.imagePickerController.sourceType = .photoLibrary
         self.imagePicker.delegate = self
         self.imagePicker.resizableCropArea = false
         self.present(self.imagePicker.imagePickerController, animated: true, completion: nil)

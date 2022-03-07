@@ -91,7 +91,7 @@ public enum WDImagePickerAspectRatioPreset {
         if _imagePickerController.sourceType == .photoLibrary && UIDevice.current.userInterfaceIdiom != .pad {
             imageCropController.navigationController?.popViewController(animated: true)
         } else {
-            imageCropController.dismiss(animated: true, completion: nil)
+            imageCropController.navigationController?.dismiss(animated: true, completion: nil)
         }
     }
 }

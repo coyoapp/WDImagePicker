@@ -24,8 +24,5 @@ let package = Package(
         .target(
             name: "WDImagePicker",
             dependencies: []),
-        .testTarget(
-            name: "WDImagePickerTests",
-            dependencies: ["WDImagePicker"]),
     ]
 )

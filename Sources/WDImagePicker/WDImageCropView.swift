@@ -148,7 +148,7 @@ internal class WDImageCropView: UIView, UIScrollViewDelegate {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        let toolbarSize = CGFloat(UIDevice.current.userInterfaceIdiom == .pad ? 0 : 54)
+        let toolbarSize = CGFloat(54)
 
         let height = self.imageToCrop!.size.height
         let width = self.imageToCrop!.size.width

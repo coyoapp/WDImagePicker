@@ -74,13 +74,13 @@ public enum WDImagePickerAspectRatioPreset {
         cropController.useButtonTitle = self.useButtonText ?? "Use"
         cropController.delegate = self
 
-//         if UIDevice.current.userInterfaceIdiom == .pad {
-//             cropController.modalPresentationStyle = .overCurrentContext
-//             cropController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-//             picker.present(UINavigationController(rootViewController: cropController), animated: true, completion: nil)
-//         } else {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            cropController.modalPresentationStyle = .fullScreen
+            cropController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+            picker.present(UINavigationController(rootViewController: cropController), animated: true, completion: nil)
+        } else {
             picker.pushViewController(cropController, animated: true)
-//         }
+        }
     }
 
     func imageCropController(_ imageCropController: WDImageCropViewController, didFinishWithCroppedImage croppedImage: UIImage) {

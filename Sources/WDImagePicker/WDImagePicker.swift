@@ -75,7 +75,7 @@ public enum WDImagePickerAspectRatioPreset {
         cropController.delegate = self
 
         if UIDevice.current.userInterfaceIdiom == .pad {
-            cropController.modalPresentationStyle = .pageSheet
+            cropController.modalPresentationStyle = .overCurrentContext
             cropController.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
             picker.present(UINavigationController(rootViewController: cropController), animated: true, completion: nil)
         } else {

@@ -33,24 +33,14 @@ internal class WDImageCropViewController: UIViewController {
         super.viewWillAppear(true)
         self.setupCropView()
 
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            self.navigationController?.isNavigationBarHidden = true
-            self.setupToolbar()
-        } else {
-            self.navigationController?.isNavigationBarHidden = false
-            self.setupNavigationBar()
-        }
+        self.navigationController?.isNavigationBarHidden = true
+        self.setupToolbar()
     }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
 
         self.imageCropView.frame = self.view.bounds
-
-        let safeFrame = self.view.safeAreaLayoutGuide.layoutFrame
-        let bottomSafeAreaHeight = self.view.frame.maxY - safeFrame.maxY
-        self.toolbar?.frame = CGRect(x: 0, y: self.view.bounds.height - bottomSafeAreaHeight  - 54,
-                                    width: self.view.frame.size.width, height: 54)
     }
 
     @objc func actionCancel(_ sender: AnyObject) {
@@ -63,18 +53,6 @@ internal class WDImageCropViewController: UIViewController {
             return
         }
         self.delegate?.imageCropController(self, didFinishWithCroppedImage: croppedImage)
-    }
-
-    private func setupNavigationBar() {
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: self.cancelButtonTitle,
-                                                                style: .plain,
-                                                                target: self,
-                                                                action:  #selector(self.actionCancel))
-
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: self.useButtonTitle,
-                                                                 style: .plain,
-                                                                 target: self,
-                                                                 action: #selector(self.actionUse))
     }
 
     private func setupCropView() {
@@ -116,35 +94,25 @@ internal class WDImageCropViewController: UIViewController {
     }
 
     private func setupToolbar() {
-        if UIDevice.current.userInterfaceIdiom == .phone {
+        self.toolbar = UIToolbar(frame: CGRect(x: 0, y: -54, width: self.view.frame.size.width, height: 54))
+        self.toolbar.isTranslucent = true
+        self.toolbar.barStyle = .black
 
-            self.toolbar = UIToolbar(frame: CGRect(x: 0, y: -54, width: self.view.frame.size.width, height: 54))
-            self.toolbar.isTranslucent = true
-            self.toolbar.barStyle = .black
+        let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 
-            let info = UILabel(frame: CGRect.zero)
-            info.text = ""
-            info.textColor = UIColor(red: 0.173, green: 0.173, blue: 0.173, alpha: 1)
-            info.backgroundColor = UIColor.clear
-            info.shadowColor = UIColor(red: 0.827, green: 0.731, blue: 0.839, alpha: 1)
-            info.shadowOffset = CGSize(width: 0, height: 1)
-            info.font = UIFont.boldSystemFont(ofSize: 18)
-            info.sizeToFit()
+        let cancelButton = UIBarButtonItem(title: cancelButtonTitle, style: .plain, target: self, action: #selector(actionCancel(_:)))
+        cancelButton.tintColor = .white
 
-            let flex = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-            let label = UIBarButtonItem(customView: info)
+        let chooseButton = UIBarButtonItem(title: chooseButtonTitle, style: .plain, target: self, action: #selector(actionUse(_:)))
+        chooseButton.tintColor = .white
 
-            let cancelButton = UIBarButtonItem(title: cancelButtonTitle, style: .plain, target: self, action:  #selector(actionCancel))
-            cancelButton.tintColor = .white
-
-            let chooseButton = UIBarButtonItem(title: chooseButtonTitle, style: .plain, target: self, action:  #selector(actionUse))
-            chooseButton.tintColor = .white
-
-            self.toolbar.setItems([cancelButton, flex, label, flex, chooseButton], animated: false)
-            self.toolbar.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            self.toolbar.autoresizesSubviews = true
-            self.toolbar.sizeToFit()
-            self.view.addSubview(self.toolbar)
-        }
+        self.toolbar.setItems([cancelButton, flex, chooseButton], animated: false)
+        self.view.addSubview(self.toolbar)
+        
+        self.toolbar.translatesAutoresizingMaskIntoConstraints = false
+        self.toolbar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+        self.toolbar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        self.toolbar.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        self.toolbar.heightAnchor.constraint(equalToConstant: 54).isActive = true
     }
 }

@@ -64,7 +64,7 @@ public enum WDImagePickerAspectRatioPreset {
     }
 
     open func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info:[UIImagePickerController.InfoKey : Any]) {
-        let cropController = WDImageCropViewController()    
+        let cropController = WDImageCropViewController()
         cropController.sourceImage = info[.originalImage] as? UIImage
         cropController.resizableCropArea = self.resizableCropArea
         cropController.aspectRatioPreset = self.aspectRatioPreset
@@ -82,7 +82,7 @@ public enum WDImagePickerAspectRatioPreset {
     }
 
     func imageCropControllerDidCancel(_ imageCropController: WDImageCropViewController) {
-        if _imagePickerController.sourceType == .photoLibrary && UIDevice.current.userInterfaceIdiom != .pad {
+        if _imagePickerController.sourceType == .photoLibrary {
             imageCropController.navigationController?.popViewController(animated: true)
         } else {
             imageCropController.dismiss(animated: true, completion: nil)
